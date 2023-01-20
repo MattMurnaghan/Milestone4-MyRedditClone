@@ -83,3 +83,6 @@ I deployed my Django app to Heroku early to avoid any issues with deployment and
     ```
     web: gunicorn reddit_clone.wsgi
     ```
+
+9. The app was ready for deployment and showed the Django skeleton template for an empty Django app when viewing on the Heroku app link.
+![First Deployment to Heroku](docs/images/heroku_django_skeleton.png)*Django Skeleton Template hosted on Heroku*
