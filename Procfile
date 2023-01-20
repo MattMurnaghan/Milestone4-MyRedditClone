@@ -1,1 +1,1 @@
-web: gunicorn news_app.wsgi
+web: gunicorn reddit_clone.wsgi
