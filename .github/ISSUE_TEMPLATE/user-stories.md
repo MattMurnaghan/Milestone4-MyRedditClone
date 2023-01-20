@@ -1,7 +1,7 @@
 ---
-name: 'User Stories:'
+name: User Stories
 about: Generic template to outline user stories for the reddit clone site
-title: ''
+title: 'User Story: <TITLE>'
 labels: ''
 assignees: ''
 
