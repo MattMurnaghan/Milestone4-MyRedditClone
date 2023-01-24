@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Post
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
 
 
 class PostList(generic.ListView):
@@ -62,3 +63,16 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+
+class PostUpvote(View):
+    def post(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.upvotes.filter(id=request.user.id).exists():
+            post.upvotes.remove(request.user)
+        else:
+            post.upvotes.add(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
