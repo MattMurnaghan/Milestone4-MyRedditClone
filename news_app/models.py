@@ -15,6 +15,8 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
     upvotes = models.ManyToManyField(User, related_name='user_upvotes', blank=True)
+    approved = models.BooleanField(default=True)
+
 
     class Meta:
         ordering = ['-created_on']
@@ -26,7 +28,7 @@ class Post(models.Model):
         return self.upvotes.count()
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     # I want both of these fields to be autopopulated and linked
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     # -- || --
