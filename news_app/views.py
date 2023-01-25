@@ -65,6 +65,36 @@ class PostDetail(View):
         )
 
 
+class CreatePost(View):
+    model = Post
+    template_name = 'create_post.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'create_post.html')
+
+    def post(self, request, *args, **kwargs):
+        return render(request, 'create_post')
+
+        
+
+
+    # def get(self, request, *args, **kwargs):
+    #     # post = Post.objects.create()
+    #     # post = get_object_or_404(queryset, slug=slug)
+    #     # comments = post.comments.filter(approved=True).order_by('created_on')
+    #     # upvoted = False
+    #     # if post.upvotes.filter(id=self.request.user.id).exists():
+    #     #     upvoted = True
+
+    #     return render(
+    #         request,
+    #         "create_post.html",
+    #         # {
+    #         #     "post": post,
+    #         # },
+    #     )
+
+
 class PostUpvote(View):
     def post(self, request, slug):
         queryset = Post.objects.filter(status=1)
