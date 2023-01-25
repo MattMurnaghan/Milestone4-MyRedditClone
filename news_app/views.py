@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Post
 from .forms import CommentForm, PostForm
 from django.http import HttpResponseRedirect
+from django.utils.text import slugify
 
 
 class PostList(generic.ListView):
@@ -74,31 +75,21 @@ class CreatePost(View):
         return render(request, 'create_post.html', context)
 
     def post(self, request, *args, **kwargs):
-        # queryset = Post.objects
-        # print(type(request.POST))
-        # print(request)
-        # post_form = PostForm(data=request.POST)
-        # if post_form.is_valid():
-        # post_form = PostForm()
-        post = Post()
-        post.category = request.POST.get('category', '')
-        post.content = request.POST.get('content', '')
-        post.excerpt = request.POST.get('excerpt', '')
-        post.author = request.user
-        # queryset.create(post)
+        post_form = PostForm(data=request.POST)
+        if post_form.is_valid():
+            post_form.instance.author = request.user
+            post_form.instance.slug = slugify(post_form.instance.title)
+            post_form.save()
+        else:
+            post_form = PostForm()
+            # messages.add_message(
+            #     request,
+            #     messages.ERROR,
+            #     'There was an error submitting your question. '
+            #     'Please try again!'
+            # )
 
-            # msg.add_message(request, msg.SUCCESS, f'Thank you {request.user.username} for commenting')
-        # else:
-        #     post_form = PostForm()
-
-        return render(
-            request,
-            "",
-            {
-                "post": post,
-                # "post_form": PostForm()
-            },
-        )
+        return HttpResponseRedirect(reverse('home'))
 
 
 class PostUpvote(View):

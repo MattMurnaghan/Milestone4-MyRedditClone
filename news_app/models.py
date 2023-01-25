@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from autoslug import AutoSlugField
 
 STATUS = ((0, "Under Review"), (1, "Published"))
 CATEGORIES = (
@@ -14,13 +13,13 @@ CATEGORIES = (
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = AutoSlugField(populate_from='title')
+    slug = models.CharField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='user_posts')
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(max_length=300, blank=True)
+    excerpt = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
     upvotes = models.ManyToManyField(
