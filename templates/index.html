@@ -2,16 +2,35 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
 <div class="container-fluid">
+{% else %}
+<div class="container">
+{% endif %}
     <div class="row">
+        {% if user.is_authenticated %}
+        <div class="col-3 mt-3 sidebar">
+            <p>sidebar</p>
+            <div class="row create-post">
+                <div class="col create-post__button-holder">
+                    <a href="{% url 'create_post' %}">
+                        <button type="button" class="btn btn-dark create-post__button">Create Post <i class="fa-solid fa-circle-plus"></i></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="col-9 mt-3 left post-area">
+        {% else %}
+        <div class="col-12 mt-3 left post-area">
+        {% endif %}
 
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
             <div class="row">
                 {% for post in post_list %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body post-home">
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
@@ -42,15 +61,6 @@
             </div>
         </div>
     </div>
-    {% if user.is_authenticated %}
-    <div class="row">
-        <div class="col">
-            <a href="{% url 'create_post' %}">
-                <button type="button" class="btn btn-dark">Create Post</button>
-            </a>
-        </div>
-    </div>
-    {% endif %}
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
