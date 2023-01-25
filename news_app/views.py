@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.http import HttpResponseRedirect
 
 
@@ -70,29 +70,35 @@ class CreatePost(View):
     template_name = 'create_post.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'create_post.html')
+        context = {'post_form': PostForm()}
+        return render(request, 'create_post.html', context)
 
     def post(self, request, *args, **kwargs):
-        return render(request, 'create_post')
+        # queryset = Post.objects
+        # print(type(request.POST))
+        # print(request)
+        # post_form = PostForm(data=request.POST)
+        # if post_form.is_valid():
+        # post_form = PostForm()
+        post = Post()
+        post.category = request.POST.get('category', '')
+        post.content = request.POST.get('content', '')
+        post.excerpt = request.POST.get('excerpt', '')
+        post.author = request.user
+        # queryset.create(post)
 
-        
+            # msg.add_message(request, msg.SUCCESS, f'Thank you {request.user.username} for commenting')
+        # else:
+        #     post_form = PostForm()
 
-
-    # def get(self, request, *args, **kwargs):
-    #     # post = Post.objects.create()
-    #     # post = get_object_or_404(queryset, slug=slug)
-    #     # comments = post.comments.filter(approved=True).order_by('created_on')
-    #     # upvoted = False
-    #     # if post.upvotes.filter(id=self.request.user.id).exists():
-    #     #     upvoted = True
-
-    #     return render(
-    #         request,
-    #         "create_post.html",
-    #         # {
-    #         #     "post": post,
-    #         # },
-    #     )
+        return render(
+            request,
+            "",
+            {
+                "post": post,
+                # "post_form": PostForm()
+            },
+        )
 
 
 class PostUpvote(View):

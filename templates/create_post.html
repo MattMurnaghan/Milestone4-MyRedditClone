@@ -1,7 +1,21 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+
 
 {% block content %}
-<h1>
-    Create Post
-</h1>
+{% if user.is_authenticated %}
+
+<div class="container">
+    <div class="row">
+        <h3>Create a Post:</h3>
+    </div>
+    <div class="row">
+        <form method="post" style="margin-top: 1.3em;">
+            {{ post_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
