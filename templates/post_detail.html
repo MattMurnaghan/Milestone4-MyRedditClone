@@ -4,7 +4,7 @@
 
 <div class="masthead">
     <div class="container">
-        <div class="row g-0">
+        <div class="row g-0 hero-image">
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.title }}</h1>
@@ -26,34 +26,34 @@
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
+            <div class="card-body post-card">
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text ">
+                <p class="card-text post-card">
                     {{ post.content | safe }}
                 </p>
-                <div class="row">
-                    <div class="col-1">
-                        <strong>
+                <div class="row post-card">
+                    <div class="col-1 post-card">
+                        <strong class="post-card">
                             {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST"> 
+                            <form class="d-inline post-card" action="{% url 'post_upvote' post.slug %}" method="POST"> 
                                 {% csrf_token %}
                                 {% if upvoted %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fa-solid fa-circle-up"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like post-card"><i class="fa-solid fa-circle-up upvote-icon"></i></button>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fa-regular fa-circle-up"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like post-card"><i class="fa-regular fa-circle-up upvote-icon"></i></button>
                                 {% endif %}
                             </form>
                             {% else %}
-                            <span class="text-secondary"><i class="fa-regular fa-circle-up"></i></span>
+                            <span class="post-card"><i class="fa-regular fa-circle-up upvote-icon"></i></span>
                             {% endif %}
                             <!-- The number of likes goes before the closing strong tag -->
-                            <span class="text-secondary">{{ post.number_of_upvotes }} </span>
+                            <span class="post-card">{{ post.number_of_upvotes }} </span>
                         </strong>
                     </div>
-                    <div class="col-1">
+                    <div class="col-1 post-card">
                         {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                        <strong class="upvote-icon"><i class="far fa-comments upvote-icon"></i>
                             <!-- Our total_comments variable goes before the closing strong tag -->
                             {{ total_comments }}</strong>
                         {% endwith %}
@@ -70,7 +70,7 @@
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
-            <div class="card-body">
+            <div class="card-body comment-form">
                 <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">

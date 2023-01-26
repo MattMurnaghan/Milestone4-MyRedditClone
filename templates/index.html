@@ -4,34 +4,35 @@
 
 {% if user.is_authenticated %}
 <div class="container-fluid">
-{% else %}
-<div class="container">
-{% endif %}
-    <div class="row">
-        {% if user.is_authenticated %}
-        <div class="col-3 mt-3 sidebar">
-            <div class="row create-post mb-10">
-                <div class="col create-post__button-holder">
-                    <a href="{% url 'create_post' %}">
-                        <button type="button" class="btn btn-dark create-post__button">Create Post <i class="fa-solid fa-circle-plus"></i></button>
-                    </a>
-                </div>
-            </div>
-            <div class="row suggested-post mt-3 pb-2">
-                <div class="col-12">
-                    <span class="suggested-post__title">Favourite Categories</span>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-dark suggested-post__category">1</a>
-                        <a href="#" class="list-group-item list-group-item-dark suggested-post__category">2</a>
-                        <a href="#" class="list-group-item list-group-item-dark suggested-post__category">3</a>
-                        <a href="#" class="list-group-item list-group-item-dark suggested-post__category">4</a>
-                        <a href="#" class="list-group-item list-group-item-dark suggested-post__category">5</a>
+    {% else %}
+    <div class="container">
+        {% endif %}
+        <div class="row">
+            {% if user.is_authenticated %}
+            <div class="col-3 mt-3 sidebar">
+                <div class="row create-post mb-10">
+                    <div class="col create-post__button-holder">
+                        <a href="{% url 'create_post' %}">
+                            <button type="button" class="btn btn-dark create-post__button">Create Post <i
+                                    class="fa-solid fa-circle-plus"></i></button>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="row suggested-post mt-3 pb-2">
-                <div class="col-12">
-                    <span class="suggested-post__title">Recent Likes</span>
+                <div class="row suggested-post mt-3 pb-2">
+                    <div class="col-12">
+                        <span class="suggested-post__title">Favourite Categories</span>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-dark suggested-post__category">1. Tech</a>
+                            <a href="#" class="list-group-item list-group-item-dark suggested-post__category">2. Dogs</a>
+                            <a href="#" class="list-group-item list-group-item-dark suggested-post__category">3. Crypto</a>
+                            <a href="#" class="list-group-item list-group-item-dark suggested-post__category">4. Cars</a>
+                            <a href="#" class="list-group-item list-group-item-dark suggested-post__category">5. Programming</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row suggested-post mt-3 pb-2">
+                    <div class="col-12">
+                        <span class="suggested-post__title">Recent Likes</span>
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">1</a>
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">2</a>
@@ -39,11 +40,11 @@
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">4</a>
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">5</a>
                         </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row suggested-post mt-3 pb-2">
-                <div class="col-12">
-                    <span class="suggested-post__title">My Posts</span>
+                <div class="row suggested-post mt-3 pb-2">
+                    <div class="col-12">
+                        <span class="suggested-post__title">My Posts</span>
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">1</a>
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">2</a>
@@ -51,57 +52,62 @@
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">4</a>
                             <a href="#" class="list-group-item list-group-item-dark suggested-post__category">5</a>
                         </div>
-                </div>
-            </div>
-            
-        </div>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <div class="col-9 mt-3 left post-area">
-        {% else %}
-        <div class="col-12 mt-3 left post-area">
-        {% endif %}
-
-            <div class="row">
-                {% for post in post_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4 post-card">
-                        <div class="card-body post-home">
-                           
-                            <a href="{% url 'post_detail' post.slug  %}" class="post-link">
-                                <h2 class="card-title">{{ post.title }}</h2>
-                                <p class="author">Author: {{ post.author }}</p>
-
-                                <p class="card-text">{{ post.excerpt }}</p>
-                            </a>
-                            <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on}} <i
-                                    class="fa-regular fa-circle-up"></i>
-                                {{ post.number_of_upvotes }}</p>
-                        </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+
             </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
+            {% endif %}
+            {% if user.is_authenticated %}
+            <div class="col-9 mt-3 left post-area">
+                {% else %}
+                <div class="col-12 mt-3 left post-area">
+                    {% endif %}
+
+                    <div class="row">
+                        {% for post in post_list %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 post-card">
+                                <div class="card-body post-home post-color">
+
+                                    <a href="{% url 'post_detail' post.slug  %}" class="post-link post-color">
+                                        <h2 class="card-title post-color">{{ post.title }}</h2>
+                                        <p class="author post-color">Author: {{ post.author }}</p>
+
+                                        <p class="card-text post-color">{{ post.excerpt }}</p>
+                                    </a>
+                                    <hr />
+                                    <p class="card-text h6 post-color">
+                                        {{ post.created_on}} 
+                                        {% if post.number_of_upvotes %}
+                                        <i class="fa-regular fa-circle-up upvote-icon upvoted"></i>
+                                        {% else %}
+                                        <i class="fa-regular fa-circle-up upvote-icon"></i>
+                                        {% endif %}
+                                        {{ post.number_of_upvotes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
+            {% if is_paginated %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
         </div>
-    </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-</div>
-
-{%endblock%}
+        {%endblock%}

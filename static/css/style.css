@@ -29,10 +29,13 @@ body {
 .suggested-post__category{
     padding: 0.3rem 0.5rem;
     background-color: #545a5f;
+    color: white;
 }
 
-.suggested-post__category:hover{
-    color: white;
+.suggested-post__category:hover,
+.post-link h2:hover,
+.post-link p:hover{
+    color: darkgray
 }
 
 .suggested-post__title {
@@ -60,7 +63,21 @@ body {
 }
 
 .post-home {
+    border-radius: 10px;
+}
 
+.post-title {
+    margin-top: 20%;
+    margin-left: 5%;
+    background: transparent;
+}
+
+.post-subtitle {
+    background: transparent;
+}
+
+h3 { 
+    background-color: inherit;
 }
 
 .post-area {
@@ -68,5 +85,156 @@ body {
 }
 
 .post-card {
-    border: 2px solid #2b2f32;
+    background-color: transparent;
+    color: white;
+}
+
+.card{
+    background: #545a5f;
+}
+
+.comment-form {
+    background: #545a5f;
+}
+
+.comment-form > * {
+    background-color: inherit;
+}
+
+.post-color {
+    background: #545a5f;
+    text-decoration: none;
+}
+
+.upvote-icon {
+    background-color: #545a5f;
+}
+
+.upvoted {
+    color: #ff871e;
+}
+
+
+/* .hero-image {
+    position: absolute;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-text {
+    position: relative;
+} */
+
+
+.brand {
+    font-family: Lato, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4A4A4F;
+}
+
+
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    position: absolute;
+    bottom: 5%;
+    min-width: 30%;
+    left: -2px;
+    background-color: #23BBBB;
+}
+
+.author {
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+}
+
+.masthead {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    height: 33vh;
+    width: 100%;
+}
+
+.masthead-text {
+    background-color: #445261;
+    color: white;
+    position: relative;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-image:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 90%;
+    height: 100%;
+    width: 150%;
+    background: #445261;
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    transform: skew(15deg);
+    z-index: 100;
+}
+
+.post-link {
+    text-decoration: none;
+    color: #445261;
+}
+
+.post-link:hover,
+.page-link {
+    color: #E84610;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: lightgray;
+}
+
+.btn-signup {
+    background-color: #23BBBB;
+    color: #fff;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #23BBBB;
+}
+
+.link {
+    color: #23BBBB;
+    text-decoration: none;
+}
+
+.link:hover,
+.link:active {
+    color: #445261;
+    text-decoration: underline;
+}
+
+.btn-like {
+    color: #E84610;
+    border: none;
+    background: transparent;
+}
+
+.btn-like:hover,
+.btn-like:active {
+    color: #E84610;
+    background: transparent;
+    border: none;
 }
