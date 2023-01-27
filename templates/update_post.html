@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<!-- <style>
+    input {max-width: 12em};
+</style> -->
+
+<div class="container">
+    <div class="row">
+        <h3>Please enter new fields to update {{ post.title }}:</h3>
+    </div>
+    <div class="row">
+        <form method="post" class="create-post__form" style="margin-top: 1.3em;">
+            {{ post_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" name="blogpost_id" value="{{post.title}" class="btn btn-dark create-post__button centered-btn">Submit</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

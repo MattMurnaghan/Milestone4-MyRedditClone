@@ -49,7 +49,8 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            # msg.add_message(request, msg.SUCCESS, f'Thank you {request.user.username} for commenting')
+            # msg.add_message(request, msg.SUCCESS,
+            #                 f'Thank you {request.user.username} for commenting')
         else:
             comment_form = CommentForm()
 
@@ -71,7 +72,8 @@ class CreatePost(View):
     template_name = 'create_post.html'
 
     def get(self, request, *args, **kwargs):
-        context = {'post_form': PostForm()}
+        post_form = PostForm()
+        context = {'post_form': post_form}
         return render(request, 'create_post.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -86,21 +88,33 @@ class CreatePost(View):
         return HttpResponseRedirect(reverse('home'))
 
 
+class UpdatePost(View):
+    model = Post
+    template_name = 'update_post.html'
+
+    def get(self, request, title):
+        post = Post.objects.get(title=title)
+        post_form = PostForm(instance=post)
+        context = {
+            'post_form': post_form
+        }
+        return render(request, 'update_post.html', context)
+
+    def post(self, request, title, *args, **kwargs):
+        post = Post.objects.get(title=title)
+        post_form = PostForm(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+        return HttpResponseRedirect(reverse('home'))
+
+
 class DeletePost(View):
     model = Post
     template_name = 'post_detail.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     context = {'post_form': PostForm()}
-    #     return render(request, 'create_post.html', context)
-
     def post(self, request, *args, **kwargs):
         post = Post.objects.filter(slug=request.POST['blogpost_id'])
-        print(post)
         post.delete()
-        # post = Post.objects.filter(slug=)
-        # else:
-        #     post_form = PostForm()
         return HttpResponseRedirect(reverse('home'))
 
 
@@ -108,10 +122,8 @@ class PostUpvote(View):
     def post(self, request, slug):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(Post, slug=slug)
-
         if post.upvotes.filter(id=request.user.id).exists():
             post.upvotes.remove(request.user)
         else:
             post.upvotes.add(request.user)
-
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
