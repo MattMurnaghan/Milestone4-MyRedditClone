@@ -149,9 +149,24 @@ It is a paginated site consisting of 6 main layouts:
 
 ### Sign in/ Sign out
 ---
-These pages are quite similar to each other. as they both make use of oostrap templates and the django allauth package.
+These pages are quite similar to each other. as they both make use of oostrap templates and the django allauth package. They allow the user to sign into an existing account using a case sensitive password and username.
+
+![sign in desktop](docs/images/Sign-in-desktop.png)*Sign in Desktop*
+
+![sign in mobile](docs/images/Sign-in-mobile.png)*Sign in Mobile*
 
 
+### Register a new user
+---
+The register a new user page is very similar to the sign in and sign out templates provided by allauth, some minor styling has been applied to differentiate it and make it fit the theme of the rest of the site.
+
+![register new account desktop](docs/images/register-new-account-desktop.png)*Register new user Desktop*
+
+![register new account mobile](docs/images/register-new-account-mobile.png)*Register new user Mobile*
+
+### Homepage
+---
+The homepage is the main page you are greeted with when visiting the site. It can be viewed without an account, but you cannot like or comment on a post if you are not logged in as an authenticated user. From here, you can click into individual posts to view them in greater detail, or make changes to them if you are the owner of a post. You can also create a new post from this page using the create post button.
 
 
 

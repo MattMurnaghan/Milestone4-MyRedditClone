@@ -104,12 +104,14 @@
                 {% endif %}
             </ul>
         {% endif %}
+        {% if user.is_authenticated %}
             <div class="create-post__button-holder d-block d-sm-none">
                 <a href="{% url 'create_post' %}">
                     <button type="button" class="btn btn-dark create-post__button">Create Post <i
                             class="fa-solid fa-circle-plus"></i></button>
                 </a>
             </div>
+        {% endif %}
         {% if is_paginated %}
             <ul class="pagination page-btn-right">
                 {% if page_obj.has_next %}
