@@ -74,6 +74,14 @@ body {
     background-color: #222629;
 }
 
+a.page-link.page-btn-left-link,
+a.page-link.page-btn-right-link {
+    background: transparent;
+    border: 2px solid #545a5f;
+    color: white;
+    border-radius: 10px;
+}
+
 .create-post__button:hover {
     border: 2px solid white;
 }
