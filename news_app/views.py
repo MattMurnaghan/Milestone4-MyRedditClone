@@ -82,13 +82,25 @@ class CreatePost(View):
             post_form.save()
         else:
             post_form = PostForm()
-            # messages.add_message(
-            #     request,
-            #     messages.ERROR,
-            #     'There was an error submitting your question. '
-            #     'Please try again!'
-            # )
 
+        return HttpResponseRedirect(reverse('home'))
+
+
+class DeletePost(View):
+    model = Post
+    template_name = 'post_detail.html'
+
+    # def get(self, request, *args, **kwargs):
+    #     context = {'post_form': PostForm()}
+    #     return render(request, 'create_post.html', context)
+
+    def post(self, request, *args, **kwargs):
+        post = Post.objects.filter(slug=request.POST['blogpost_id'])
+        print(post)
+        post.delete()
+        # post = Post.objects.filter(slug=)
+        # else:
+        #     post_form = PostForm()
         return HttpResponseRedirect(reverse('home'))
 
 

@@ -4,16 +4,24 @@
     background-color: #222629;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     background-color: #222629;
 
 }
 
+/* .navbar-toggler {
+    margin-bottom: ;
+} */
 
-.sidebar{
+
+.sidebar {
     background-color: #222629;
     position: relative;
-    height:100vh;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -21,12 +29,16 @@ body {
     border-right: #2b2f32 solid 2px;
 }
 
+/* (@media screen and (min-width: ) {
+    
+} */
+
 .suggested-post {
     width: 95%;
     background-color: inherit;
 }
 
-.suggested-post__category{
+.suggested-post__category {
     padding: 0.3rem 0.5rem;
     background-color: #545a5f;
     color: white;
@@ -34,7 +46,7 @@ body {
 
 .suggested-post__category:hover,
 .post-link h2:hover,
-.post-link p:hover{
+.post-link p:hover {
     color: darkgray
 }
 
@@ -46,20 +58,41 @@ body {
     /* position: absolute; */
     /* bottom: 10px; */
     width: 100%;
+    align-items: center;
 }
 
-.create-post__button-holder{
+.create-post__button-holder,
+.create-post__button-holder a {
     display: flex;
     justify-content: center;
 }
 
 .create-post__button {
     border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #545a5f;
+    background-color: #222629;
+}
+
+.create-post__button:hover {
+    border: 2px solid white;
 }
 
 .create-post__form {
-    /* height: 60vh; */
+    display: flex;
     width: 80vw;
+    flex-direction: column;
+    align-content: center;
+}
+
+.page-btn-left {
+    position: absolute;
+    left: 1rem;
+}
+
+.page-btn-right {
+    position: absolute;
+    right: 1rem;
 }
 
 .post-home {
@@ -76,7 +109,7 @@ body {
     background: transparent;
 }
 
-h3 { 
+h3 {
     background-color: inherit;
 }
 
@@ -89,7 +122,7 @@ h3 {
     color: white;
 }
 
-.card{
+.card {
     background: #545a5f;
 }
 
@@ -97,8 +130,28 @@ h3 {
     background: #545a5f;
 }
 
-.comment-form > * {
+.comment-form *,
+.comments * {
     background-color: inherit;
+    color: white;
+}
+
+.comment-form.submit-comment__button {
+    background-color: #222629;
+}
+
+.submit-comment__button {
+    background-color: #222629;
+}
+
+
+.comment-form-holder textarea {
+    background-color: white;
+}
+
+.card h3 {
+    margin-top: 3%;
+    margin-left: 2%;
 }
 
 .post-color {
@@ -113,6 +166,46 @@ h3 {
 .upvoted {
     color: #ff871e;
 }
+
+.page-buttons-holder {
+    width: 100%;
+    margin: 0;
+}
+
+.page-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.centered-btn {
+    width: 120px;
+    margin-top: 10px;
+    align-self: center;
+}
+
+#div_id_excerpt textarea {
+    height: 80px;
+}
+
+.msg {
+    text-align: center;
+    line-height: 6vh;
+    border: solid 2px;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+/* @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+} */
 
 
 /* .hero-image {
@@ -160,8 +253,13 @@ h3 {
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    min-height: 10vh;
+    max-height: 33vh;
     width: 100%;
+}
+
+.masthead-container {
+    padding: 0;
 }
 
 .masthead-text {
