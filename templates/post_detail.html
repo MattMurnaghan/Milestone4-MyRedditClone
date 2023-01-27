@@ -60,11 +60,13 @@
                     </div>
                     <div class="col-1 post-card">
                         {% if user.is_authenticated %}
+                        {% if user == post.author %}
                                 <form class="d-inline post-card" action="{% url 'update_post' post.title %}" method="GET">
                                     {% csrf_token %}
                                     <button type="submit" name="blogpost_id" value="{{post.title}" class="btn-like post-card"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </form>
-                                {% endif %} 
+                        {% endif %} 
+                        {% endif %} 
                     </div>
                     <div class="col-1 post-card">
                         {% if user.is_authenticated %}
