@@ -39,9 +39,9 @@
                             <form class="d-inline post-card" action="{% url 'post_upvote' post.slug %}" method="POST"> 
                                 {% csrf_token %}
                                 {% if upvoted %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like post-card"><i class="fa-solid fa-circle-up upvote-icon"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn btn-like post-card"><i class="fa-solid fa-circle-up upvote-icon"></i></button>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like post-card"><i class="fa-regular fa-circle-up upvote-icon"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn btn-like post-card"><i class="fa-regular fa-circle-up upvote-icon"></i></button>
                                 {% endif %}
                             </form>
                             {% else %}
@@ -63,7 +63,7 @@
                         {% if user == post.author %}
                                 <form class="d-inline post-card" action="{% url 'update_post' post.title %}" method="GET">
                                     {% csrf_token %}
-                                    <button type="submit" name="blogpost_id" value="{{post.title}" class="btn-like post-card"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button type="submit" name="blogpost_id" value="{{post.title}" class="btn btn-like post-card"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </form>
                         {% endif %} 
                         {% endif %} 
@@ -73,7 +73,7 @@
                         {% if user == post.author %}
                             <form class="d-inline post-card" action="{% url 'delete_post' post.slug %}" method="POST"> 
                                 {% csrf_token %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like post-card"><i class="fa-solid fa-trash-can"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn btn-like post-card"><i class="fa-solid fa-trash-can"></i></button>
                         {% endif %}
                         {% endif %}
                             </form>

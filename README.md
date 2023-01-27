@@ -168,8 +168,22 @@ The register a new user page is very similar to the sign in and sign out templat
 ---
 The homepage is the main page you are greeted with when visiting the site. It can be viewed without an account, but you cannot like or comment on a post if you are not logged in as an authenticated user. From here, you can click into individual posts to view them in greater detail, or make changes to them if you are the owner of a post. You can also create a new post from this page using the create post button.
 
+![home page logged out desktop](docs/images/Home-page-logged-out-desktop.png)*Home page logged out Desktop*
+
+![home page logged out mobile](docs/images/Home-page-logged-out-mobile.png)*Home page logged out Mobile*
+
+When logged in, the user is presented with the create post buttons. On a desktop view, the user is also presented with a sidebar showing their favourite cateogries, most likes posts and most recently posted that they own. The logic for these features has not been implemented yet, as it is marked for phase 2 of the project.
+
+![home page logged in desktop](docs/images/Home-page-logged-in-desktop.png)*Home page logged in Desktop*
+
+![home page logged in mobile](docs/images/Home-page-logged-in-mobile.png)*Home page logged in Mobile*
+
+### Single Post
+---
+A user can click on the title and excerpt section of a post on the home page to view the post in greater detail. From there, the user can toggle upvote the post or leave a comment. 
 
 
+If the person viewing the post happens to be the author of the post, they will also have the ability to edit or delete the post as they see fit.
 
 
 ## Deployment
