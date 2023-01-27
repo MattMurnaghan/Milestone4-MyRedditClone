@@ -134,7 +134,23 @@ The wireframes can be found here: [wireframes](docs/wireframes/milestone-4-wiref
 
 ### Surface
 ---
-The
+The color scheme used for thi project was dark. I was aiming to make my site look slick and modern.
+
+## **Features**
+The site is built to be fully responsive, scaling well on mobiles, desktops and devices inbetween.
+
+It is a paginated site consisting of 6 main layouts:
+1. Sign in
+2. Sign out
+3. Register new user
+4. Homepage
+5. Single post
+6. Create post
+
+### Sign in/ Sign out
+---
+These pages are quite similar to each other. as they both make use of oostrap templates and the django allauth package.
+
 
 
 
