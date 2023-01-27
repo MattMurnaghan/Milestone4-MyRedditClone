@@ -33,7 +33,7 @@
                     {{ post.content | safe }}
                 </p>
                 <div class="row post-card">
-                    <div class="col-1 post-card">
+                    <div class="col-1 post-card post-icons">
                         <strong class="post-card">
                             {% if user.is_authenticated %}
                             <form class="d-inline post-card" action="{% url 'post_upvote' post.slug %}" method="POST"> 
@@ -51,14 +51,14 @@
                             <span class="post-card">{{ post.number_of_upvotes }} </span>
                         </strong>
                     </div>
-                    <div class="col-1 post-card">
+                    <div class="col-1 post-card post-icons">
                         {% with comments.count as total_comments %}
                         <strong class="upvote-icon"><i class="far fa-comments upvote-icon"></i>
                             <!-- Our total_comments variable goes before the closing strong tag -->
                             {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
-                    <div class="col-1 post-card">
+                    <div class="col-1 post-card post-icons">
                         {% if user.is_authenticated %}
                         {% if user == post.author %}
                                 <form class="d-inline post-card" action="{% url 'update_post' post.title %}" method="GET">
@@ -68,7 +68,7 @@
                         {% endif %} 
                         {% endif %} 
                     </div>
-                    <div class="col-1 post-card">
+                    <div class="col-1 post-card post-icons">
                         {% if user.is_authenticated %}
                         {% if user == post.author %}
                             <form class="d-inline post-card" action="{% url 'delete_post' post.slug %}" method="POST"> 

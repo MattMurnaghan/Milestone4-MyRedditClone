@@ -17,6 +17,13 @@ body {
     margin-bottom: ;
 } */
 
+.row {
+    justify-content: center;
+}
+
+.post-icons {
+    width: 15%;
+}
 
 .sidebar {
     background-color: #222629;
