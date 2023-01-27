@@ -50,8 +50,9 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            msg.add_message(request, msg.SUCCESS,
-                            f'Thank you {request.user.username} for commenting')
+            msg.add_message(
+                request, msg.SUCCESS,
+                f'Thank you {request.user.username} for commenting')
         else:
             comment_form = CommentForm()
 
@@ -83,8 +84,9 @@ class CreatePost(View):
             post_form.instance.author = request.user
             post_form.instance.slug = slugify(post_form.instance.title)
             post_form.save()
-            msg.add_message(request, msg.SUCCESS,
-                            f'Thank you {request.user.username} for creating a post.')
+            msg.add_message(
+                request, msg.SUCCESS,
+                f'Thank you {request.user.username} for creating a post.')
         else:
             post_form = PostForm()
 
