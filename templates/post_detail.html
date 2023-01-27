@@ -111,11 +111,7 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body comment-form">
-                {% if commented %}
-                <div class="alert alert-success msg" role="alert">
-                    Thank you for commenting.
-                </div>
-                {% else %}
+                
                 {% if user.is_authenticated %}
 
                 <h3>Leave a comment:</h3>
@@ -125,7 +121,6 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-dark submit-comment__button btn-lg mt-2">Submit</button>
                 </form>
-                {% endif %}
                 {% endif %}
             </div>
         </div>

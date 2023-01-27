@@ -4,6 +4,7 @@ from .models import Post
 from .forms import CommentForm, PostForm
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
+from django.contrib import messages as msg
 
 
 class PostList(generic.ListView):
@@ -49,8 +50,8 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            # msg.add_message(request, msg.SUCCESS,
-            #                 f'Thank you {request.user.username} for commenting')
+            msg.add_message(request, msg.SUCCESS,
+                            f'Thank you {request.user.username} for commenting')
         else:
             comment_form = CommentForm()
 
@@ -82,6 +83,8 @@ class CreatePost(View):
             post_form.instance.author = request.user
             post_form.instance.slug = slugify(post_form.instance.title)
             post_form.save()
+            msg.add_message(request, msg.SUCCESS,
+                            f'Thank you {request.user.username} for creating a post.')
         else:
             post_form = PostForm()
 
@@ -105,6 +108,10 @@ class UpdatePost(View):
         post_form = PostForm(request.POST, instance=post)
         if post_form.is_valid():
             post_form.save()
+            msg.add_message(
+                request, msg.SUCCESS,
+                f'{request.user.username},\
+                 you have successfully updated a post.')
         return HttpResponseRedirect(reverse('home'))
 
 
@@ -115,6 +122,10 @@ class DeletePost(View):
     def post(self, request, *args, **kwargs):
         post = Post.objects.filter(slug=request.POST['blogpost_id'])
         post.delete()
+        msg.add_message(
+            request, msg.SUCCESS,
+            f'{request.user.username},\
+                 you have successfully deleted a post.')
         return HttpResponseRedirect(reverse('home'))
 
 
@@ -124,6 +135,15 @@ class PostUpvote(View):
         post = get_object_or_404(Post, slug=slug)
         if post.upvotes.filter(id=request.user.id).exists():
             post.upvotes.remove(request.user)
+            msg.add_message(
+                request, msg.SUCCESS,
+                f'{request.user.username},\
+                 you have successfully removed your upvote.')
         else:
             post.upvotes.add(request.user)
+            msg.add_message(
+                request, msg.SUCCESS,
+                f'Thank you {request.user.username}\
+                 for upvoting a post.')
+
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
